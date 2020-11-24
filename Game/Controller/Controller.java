@@ -234,7 +234,7 @@ public class Controller {
         musicController.stopMusic();
         clickController.click("music/JokerWin.wav");
 
-        Object[] options = {"Avsluta", "Nej", "Ja"};
+        Object[] options = {"Ja", "Nej", "Avsluta"};
         int reply = JOptionPane.showOptionDialog(null, messageWin + " " + name
                         + "\n" + "Vill ni spela igen?", "Spelomgång slut",
                 JOptionPane.YES_NO_CANCEL_OPTION,

@@ -307,7 +307,7 @@ public class MenuGUI extends JFrame {
                     e.getWindow().dispose();
                     System.exit(0);
                 } else {
-                    System.out.println("We are happy you are back :)");
+                	JOptionPane.showMessageDialog(null, "We are happy you are back :)");
                 }
             }
         });
