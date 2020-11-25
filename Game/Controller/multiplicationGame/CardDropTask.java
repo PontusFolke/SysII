@@ -1,6 +1,7 @@
 package Game.Controller.multiplicationGame;
 
 import Game.Controller.ClickController;
+import Game.Controller.Controller;
 import Game.Model.Card;
 import Game.View.JokerGameGUI;
 
@@ -16,9 +17,10 @@ import java.util.Random;
  * @version 4.0
  */
 public class CardDropTask extends Card implements Runnable {
+	private Controller c;
     private DropCardsThread dropCardsThread;
     private JokerGameGUI jokerGameGui;
-    private ClickController clickController = new ClickController();
+    private ClickController clickController;
 
     private boolean alive = false;
     private int xPosition = new Random().nextInt(800);               // Problems appear random to this number.
@@ -36,8 +38,10 @@ public class CardDropTask extends Card implements Runnable {
      * @param problem         the question for the user to answer on this task.
      * @param solved          the correct answer for the problem.
      */
-    public CardDropTask(JokerGameGUI jokerGameGui, DropCardsThread dropCardsThread, String problem, String solved) {
-        this.jokerGameGui = jokerGameGui;
+    public CardDropTask(Controller c, JokerGameGUI jokerGameGui, DropCardsThread dropCardsThread, String problem, String solved) {
+        super(c);
+        this.clickController = c.getClick().getController();
+    	this.jokerGameGui = jokerGameGui;
         this.dropCardsThread = dropCardsThread;
         this.problem = problem;
         this.solved = solved;

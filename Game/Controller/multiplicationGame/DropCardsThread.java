@@ -18,8 +18,8 @@ import java.util.Random;
  * @version 4.0
  */
 public class DropCardsThread implements Runnable {
-    private MusicController musicController = new MusicController();
-    private ClickController clickController = new ClickController();
+    private MusicController musicController;
+    private ClickController clickController;
     private Controller controller;
     private JokerGameGUI jokerGameGui;
 
@@ -38,6 +38,8 @@ public class DropCardsThread implements Runnable {
      */
     public DropCardsThread(Controller controller) {
         this.controller = controller;
+        this.musicController = controller.getMusic().getController();
+        this.clickController = controller.getClick().getController();
         jokerGameGui = new JokerGameGUI();
         random = new Random();
         singlePlayer = false;
@@ -171,7 +173,7 @@ public class DropCardsThread implements Runnable {
         for (int i = 0; i < NBR_OF_PROBLEMS_IN_BUFFER; i++) {      // Fill upp the falling drops list with Runnables.
             String problem = problemsBuffer.remove(0);
             String solved = solvedBuffer.remove(0);
-            CardDropTask cardDropTask = new CardDropTask(jokerGameGui, this, problem, solved);
+            CardDropTask cardDropTask = new CardDropTask(controller, jokerGameGui, this, problem, solved);
             fallingDropsList.add(cardDropTask);
         }
     }

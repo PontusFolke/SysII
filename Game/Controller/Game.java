@@ -8,6 +8,8 @@ package Game.Controller;
  */
 public class Game {
     public static void main(String[] args) {
-        new Controller();
+    	MusicController mc = new MusicController();
+    	ClickController cc = new ClickController(mc);
+        Controller c = new Controller(mc, cc);
     }
 }

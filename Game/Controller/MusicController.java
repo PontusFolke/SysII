@@ -14,13 +14,14 @@ import java.io.File;
  */
 public class MusicController {
     private static Clip clip;
-    private boolean play = true;
+    private boolean mute = false;
+    private MusicController mc;
 
     /**
      * This method plays the music chosen for the background music in a loop
      */
     public void playMusic(String filename) {
-    	if(play == true) {
+    	if(mute == false) {
 	        try {
 	            File file = new File(filename);
 	            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
@@ -39,8 +40,21 @@ public class MusicController {
      * the settingsGUI or by closing the program
      */
     public void stopMusic() {
-    	play = false;
         clip.stop();
+    }
+    public void muteMusic() {
+    	this.mute = true;
+    	System.out.println("music mute " + mute);
+    	clip.stop();
+    }
+    public void statMusic() {
+    	this.mute = false;
+    }
+    public boolean checkMute() {
+    	return this.mute;
+    }
+    public MusicController getController() {
+    	return this.mc;
     }
 
 }

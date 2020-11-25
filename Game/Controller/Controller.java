@@ -22,8 +22,9 @@ import java.util.Arrays;
  * @version 4.0
  */
 public class Controller {
-    private ClickController clickController = new ClickController();
-    private MusicController musicController = new MusicController();
+	private Controller controller;
+    private ClickController clickController;
+    private MusicController musicController;
     private BoardGUI boardGUI;
     private LogInGUI logInPlayer1;
     private LogInGUI logInPlayer2;
@@ -38,7 +39,9 @@ public class Controller {
     /**
      * Construct the controller and initialize a login view.
      */
-    public Controller() {
+    public Controller(MusicController mc, ClickController cc) {
+    	this.musicController = mc;
+    	this.clickController = cc;
         logInPlayer1 = new LogInGUI(this, "Player One ");
         infoReader = new InfoReader("textfiles/infopanel.txt", "textfiles/symbol.txt");
         musicController.playMusic("music/MenuMusic.wav");
@@ -141,7 +144,7 @@ public class Controller {
             String name = logInPlayer1.getTxtUsername().getText();
             multiPlayer[0] = new User(name);
             JOptionPane.showMessageDialog(null, "Välkommen spelare 1: " + name);
-            menuGUI = new MenuGUI(this);
+            menuGUI = new MenuGUI(controller);
         } else {
             String name = logInPlayer2.getTxtUsername().getText();
             multiPlayer[1] = new User(name);
@@ -247,7 +250,7 @@ public class Controller {
         if (reply == JOptionPane.CANCEL_OPTION) {
             boardGUI.dispose();
             turnPlayer1 = true;
-            boardGUI = new BoardGUI(this);
+            boardGUI = new BoardGUI(controller);
             boardGUI.getPnlPlayer1().setBorder(BorderFactory.createTitledBorder(multiPlayer[0].getUserName()));
             boardGUI.getPnlPlayer2().setBorder(BorderFactory.createTitledBorder(multiPlayer[1].getUserName()));
             boardGUI.revalidate();
@@ -255,7 +258,7 @@ public class Controller {
             System.exit(0);
         } else if (reply == JOptionPane.NO_OPTION) {
             boardGUI.setVisible(false);
-            menuGUI = new MenuGUI(this);
+            menuGUI = new MenuGUI(controller);
             musicController.playMusic("music/MenuMusic.wav");
         }
     }
@@ -273,5 +276,11 @@ public class Controller {
             multiPlayer[1].setGameScore(score);
             boardGUI.setLblScore2(score);
         }
+    }
+    public ClickController getClick() {
+    	return this.clickController;
+    }
+    public MusicController getMusic() {
+    	return this.musicController;
     }
 }

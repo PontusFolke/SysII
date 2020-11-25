@@ -18,7 +18,6 @@ import java.awt.event.WindowEvent;
  * @version 4.0
  */
 public class MenuGUI extends JFrame {
-    private MusicController musicController = new MusicController();
     private Controller controller;
 
     private JPanel pnlMain = new JPanel();
@@ -236,6 +235,9 @@ public class MenuGUI extends JFrame {
             lblGhostSinglePlayer.setVisible(true);
         }
     }
+    public Controller getController() {
+    	return this.controller;
+    }
 
     /**
      * This class contains the functions for the settings button in the MenuGUI
@@ -244,7 +246,7 @@ public class MenuGUI extends JFrame {
      */
     private class MouseSettings implements MouseListener {
         public void mouseClicked(MouseEvent e) {
-            new SettingsGUI();
+            new SettingsGUI(getController());
 
         }
 

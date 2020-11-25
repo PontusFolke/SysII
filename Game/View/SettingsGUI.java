@@ -1,5 +1,6 @@
 package Game.View;
 
+import Game.Controller.Controller;
 import Game.Controller.MusicController;
 
 import javax.swing.*;
@@ -17,7 +18,8 @@ import java.awt.event.MouseListener;
  */
 
 public class SettingsGUI extends JFrame {
-    private MusicController musicController = new MusicController();
+    private MusicController musicController;
+    private Controller controller;
     private JFrame frame = new JFrame();
 
     private JPanel pnlMain = new JPanel();
@@ -45,7 +47,9 @@ public class SettingsGUI extends JFrame {
     /**
      * This constructor contains the functions for the settingsGUI
      */
-    public SettingsGUI() {
+    public SettingsGUI(Controller c) {
+    	this.controller = c;
+    	this.musicController = this.controller.getMusic().getController();
         frame.setSize(400, 300);
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
@@ -200,6 +204,7 @@ public class SettingsGUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+        	musicController.statMusic();
             musicController.playMusic("music/MenuMusic.wav");
         }
     }
@@ -209,6 +214,7 @@ public class SettingsGUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             musicController.stopMusic();
-        }
+            musicController.muteMusic();
+            }
     }
 }

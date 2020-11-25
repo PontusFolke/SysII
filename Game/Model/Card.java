@@ -1,6 +1,7 @@
 package Game.Model;
 
 import Game.Controller.ClickController;
+import Game.Controller.Controller;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +13,8 @@ import java.awt.*;
  * @version 4.0
  */
 public class Card extends JButton {
-    private ClickController clickcontroller = new ClickController();
+	private Controller controller;
+    private ClickController clickcontroller;
     private String pathSymbol;          // Location of image.
     private ImageIcon imageShowing;     // The visible front side of the card.
     private boolean matched = false;    // True if this card is matched with another card.
@@ -20,7 +22,9 @@ public class Card extends JButton {
     /**
      * Initiate and construct a card.
      */
-    public Card() {
+    public Card(Controller c) {
+    	this.controller = c;
+    	this.clickcontroller = controller.getClick().getController();
         setPreferredSize((new Dimension(67, 89)));
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
         setBackground(Color.WHITE);

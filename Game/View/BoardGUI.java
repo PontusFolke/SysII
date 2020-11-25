@@ -18,7 +18,7 @@ import java.util.Collections;
  * @version 4.0
  */
 public class BoardGUI extends JFrame {
-    MusicController musicController = new MusicController();
+    MusicController musicController;
     private JPanel pnlMain = new JPanel();
     private JPanel pnlCards = new JPanel();
     private JPanel pnlMain2 = new JPanel();
@@ -82,8 +82,11 @@ public class BoardGUI extends JFrame {
      */
     public BoardGUI(Controller controller) {
         this.controller = controller;
-        musicController.stopMusic();
-        musicController.playMusic("music/GameMusic.wav");
+        this.controller.getMusic().stopMusic();
+        if(this.controller.getMusic().checkMute() == false) {
+        	this.controller.getMusic().playMusic("music/GameMusic.wav");
+        	}
+        //musicController.playMusic("music/GameMusic.wav");
         setupFrame();
         setupComponentsSizes();
         setupComponents();
@@ -241,7 +244,7 @@ public class BoardGUI extends JFrame {
         cardSymbolPaths = new CardDeck().addSymbols();  // Add images to cards.
         Collections.shuffle(cardSymbolPaths);           // Randomize symbols.
         for (String symbol : cardSymbolPaths) {         // Setup 24 cards.
-            Card card = new Card();
+            Card card = new Card(this.controller);
             card.setPathSymbol(symbol);
             card.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent ae) {
@@ -327,7 +330,7 @@ public class BoardGUI extends JFrame {
      */
     private class MouseSettings implements MouseListener {
         public void mouseClicked(MouseEvent e) {
-            new SettingsGUI();
+            new SettingsGUI(controller);
 
         }
 
