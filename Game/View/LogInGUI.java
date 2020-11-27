@@ -5,6 +5,8 @@ import Game.Controller.Controller;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.util.Scanner;
 
 /**
  * This class contains the gui for the login menu
@@ -16,6 +18,13 @@ public class LogInGUI extends JFrame {
     private Controller controller;
     private ImageIcon welcomeLogo = new ImageIcon("images/MemoriaWelcome.PNG");
     private ImageIcon imgbtn = new ImageIcon("images/ok.PNG");
+    private String filepath = "textfiles/members.txt";
+    private String username;
+    private String password;
+    private static Scanner scan;
+    private boolean found = false;
+	private String tempUsername = "";
+	private String tempPassword = "";
 
     private JPanel pnlMain = new JPanel();
 
@@ -27,10 +36,12 @@ public class LogInGUI extends JFrame {
     private JLabel lblPi = new JLabel(piLogo);
 
     private JTextField txtUsername = new JTextField("Användarnamn (3-10 tecken)");
+    private JTextField txtPassword = new JTextField("Password");
 
     private Font myFont = new Font("Serif", Font.ITALIC | Font.BOLD, 20);
 
     private JButton btnLogin = new JButton(imgbtn);
+    
 
     /**
      * Constructor that initializes the different components in the class
@@ -51,18 +62,22 @@ public class LogInGUI extends JFrame {
         lblGame.setBounds(40, 20, 300, 50);
         lblUsername.setBounds(50, 60, 100, 100);
         txtUsername.setBounds(120, 100, 165, 25);
+        txtPassword.setBounds(120, 130, 165, 25);
         btnLogin.setBounds(168, 150, 59, 38);
         lblPi.setBounds(128, 145, 33, 40);
 
         lblPi.setVisible(false);
 
         lblUsername.setText(name);
+        
 
         txtUsername.setForeground(Color.GRAY);
+        txtPassword.setForeground(Color.GRAY);
 
         pnlMain.add(lblGame);
         pnlMain.add(lblUsername);
         pnlMain.add(txtUsername);
+        pnlMain.add(txtPassword);
         pnlMain.add(btnLogin);
         pnlMain.add(lblPi);
 
@@ -77,7 +92,8 @@ public class LogInGUI extends JFrame {
     private void listeners() {
         txtUsername.addKeyListener(new LimitUsername());
         btnLogin.addActionListener(new Listener());
-        txtUsername.addFocusListener(new Focus());
+        txtUsername.addFocusListener(new UserFocus());
+        txtPassword.addFocusListener(new PassFocus());
         btnLogin.addMouseListener(new MouseSubmit());
 
     }
@@ -87,18 +103,34 @@ public class LogInGUI extends JFrame {
      *
      * @author Yasir Kakar
      */
-    private class Focus implements FocusListener {
-
+    private class UserFocus implements FocusListener {
         @Override
         public void focusGained(FocusEvent e) {
             txtUsername.setText(null);
             txtUsername.setForeground(Color.BLACK);
+           
         }
-
         @Override
         public void focusLost(FocusEvent e) {
-
+        	if(txtUsername.getText().length() < 1) {
+        		txtUsername.setText("Användarnamn (3-10 tecken)");
+                txtUsername.setForeground(Color.GRAY);
+        	}
         }
+    }
+    
+    private class PassFocus implements FocusListener {
+
+		public void focusGained(FocusEvent e) {
+			 txtPassword.setText(null);
+	         txtPassword.setForeground(Color.BLACK);
+		}
+		public void focusLost(FocusEvent e) {
+			if(txtPassword.getText().length() < 1) {
+			txtPassword.setText("Password");
+			txtPassword.setForeground(Color.GRAY);
+			}
+		}
     }
 
     /**
@@ -118,7 +150,7 @@ public class LogInGUI extends JFrame {
 
         @Override
         public void keyReleased(KeyEvent e) {
-            if ((txtUsername.getText().length() > 10) || (txtUsername.getText().length() < 3)) {
+            if ((txtUsername.getText().length() > 10) || (txtUsername.getText().length() < 3) && txtPassword.getText().length() < 1) {
                 txtUsername.setForeground(Color.RED);
                 btnLogin.setEnabled(false);
             } else {
@@ -158,11 +190,22 @@ public class LogInGUI extends JFrame {
      */
     private class Listener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            if ((txtUsername.getText().trim().length() <= 10) && (txtUsername.getText().trim().length() >= 3)) {
+        	username = txtUsername.getText();
+            password = txtPassword.getText(); 
+        	verifyLogin(username, password, filepath);
 
-                controller.createUser();
-                setVisible(false);
-                dispose();
+        	
+            if ((txtUsername.getText().trim().length() <= 10) && (txtUsername.getText().trim().length() >= 3)) {
+            	if(found == true) {
+            		            
+                    setVisible(false);
+                    controller.createUser();
+                    dispose();
+            	}else {
+            		JOptionPane.showMessageDialog(null, "Användare ej skapats");
+            		System.out.println(username);
+            		System.out.println(password);
+            	}
             } else {
                 JOptionPane.showMessageDialog(null, "Ogiltigt användarnamn");
             }
@@ -171,6 +214,31 @@ public class LogInGUI extends JFrame {
 
     public JTextField getTxtUsername() {
         return txtUsername;
+    }
+    
+    public void verifyLogin(String username, String password, String filepath) {
+    	
+    	
+    	try {
+    		scan = new Scanner(new File(filepath));
+    		scan.useDelimiter("[,\n]");
+    		
+    		while(scan.hasNext() && !found) {
+    			tempUsername = scan.next();
+    			tempPassword = scan.next();
+    			
+    			if(tempUsername.trim().equals(username.trim()) && tempPassword.trim().equals(password.trim())) {
+    				found = true;
+    			}
+    			else {
+    				found = false;
+    			}
+    		}
+    		scan.close();
+    		System.out.println(found);
+    	} catch (Exception e) {
+    		
+    	}
     }
 
 }

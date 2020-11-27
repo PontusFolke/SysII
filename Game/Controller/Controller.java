@@ -39,7 +39,7 @@ public class Controller {
      * Construct the controller and initialize a login view.
      */
     public Controller() {
-        logInPlayer1 = new LogInGUI(this, "Player One ");
+        logInPlayer1 = new LogInGUI(this, "Login ");
         infoReader = new InfoReader("textfiles/infopanel.txt", "textfiles/symbol.txt");
         musicController.playMusic("music/MenuMusic.wav");
     }
