@@ -163,9 +163,9 @@ public class HelpGUI extends JFrame {
      * @author Yasir Kakar
      */
     private class Panel1 extends JPanel {
-        private ImageIcon hj√§lp1Bild = new ImageIcon("images/hj√§lp1.PNG");
+        private ImageIcon hj‰lp1Bild = new ImageIcon("images/hj‰lp1.PNG");
 
-        private JLabel lblbild = new JLabel(hj√§lp1Bild);
+        private JLabel lblbild = new JLabel(hj‰lp1Bild);
 
         public Panel1() {
             setSize(700, 700);
@@ -178,9 +178,9 @@ public class HelpGUI extends JFrame {
     }
 
     private class Panel2 extends JPanel {
-        private ImageIcon hj√§lp2Bild = new ImageIcon("images/hj√§lp2.PNG");
+        private ImageIcon hj‰lp2Bild = new ImageIcon("images/hj‰lp2.PNG");
 
-        private JLabel lblbild = new JLabel(hj√§lp2Bild);
+        private JLabel lblbild = new JLabel(hj‰lp2Bild);
 
         public Panel2() {
             setSize(700, 700);
@@ -194,9 +194,9 @@ public class HelpGUI extends JFrame {
     }
 
     private class Panel3 extends JPanel {
-        private ImageIcon hj√§lp3Bild = new ImageIcon("images/hj√§lp3.PNG");
+        private ImageIcon hj‰lp3Bild = new ImageIcon("images/hj‰lp3.PNG");
 
-        private JLabel lblbild = new JLabel(hj√§lp3Bild);
+        private JLabel lblbild = new JLabel(hj‰lp3Bild);
 
         public Panel3() {
             setSize(700, 700);
@@ -210,9 +210,9 @@ public class HelpGUI extends JFrame {
     }
 
     private class Panel4 extends JPanel {
-        private ImageIcon hj√§lp4Bild = new ImageIcon("images/hj√§lp4.PNG");
+        private ImageIcon hj‰lp4Bild = new ImageIcon("images/hj‰lp4.PNG");
 
-        private JLabel lblbild = new JLabel(hj√§lp4Bild);
+        private JLabel lblbild = new JLabel(hj‰lp4Bild);
 
         public Panel4() {
             setSize(700, 700);
@@ -225,9 +225,9 @@ public class HelpGUI extends JFrame {
     }
 
     private class Panel5 extends JPanel {
-        private ImageIcon hj√§lp5Bild = new ImageIcon("images/hj√§lp5.PNG");
+        private ImageIcon hj‰lp5Bild = new ImageIcon("images/hj‰lp5.PNG");
 
-        private JLabel lblbild = new JLabel(hj√§lp5Bild);
+        private JLabel lblbild = new JLabel(hj‰lp5Bild);
 
         public Panel5() {
             setSize(700, 700);
@@ -240,9 +240,9 @@ public class HelpGUI extends JFrame {
     }
 
     private class Panel6 extends JPanel {
-        private ImageIcon hj√§lp6Bild = new ImageIcon("images/hj√§lp6.PNG");
+        private ImageIcon hj‰lp6Bild = new ImageIcon("images/hj‰lp6.PNG");
 
-        private JLabel lblbild = new JLabel(hj√§lp6Bild);
+        private JLabel lblbild = new JLabel(hj‰lp6Bild);
 
         public Panel6() {
             setSize(700, 700);
@@ -255,9 +255,9 @@ public class HelpGUI extends JFrame {
     }
 
     private class Panel7 extends JPanel {
-        private ImageIcon hj√§lp6Bild = new ImageIcon("images/hj√§lp7.PNG");
+        private ImageIcon hj‰lp7Bild = new ImageIcon("images/hj‰lp7.PNG");
 
-        private JLabel lblbild = new JLabel(hj√§lp6Bild);
+        private JLabel lblbild = new JLabel(hj‰lp7Bild);
 
         public Panel7() {
             setSize(700, 700);
@@ -270,9 +270,9 @@ public class HelpGUI extends JFrame {
     }
 
     private class Panel8 extends JPanel {
-        private ImageIcon hj√§lp6Bild = new ImageIcon("images/hj√§lp8.PNG");
+        private ImageIcon hj‰lp8Bild = new ImageIcon("images/hj‰lp8.PNG");
 
-        private JLabel lblbild = new JLabel(hj√§lp6Bild);
+        private JLabel lblbild = new JLabel(hj‰lp8Bild);
 
         public Panel8() {
             setSize(700, 700);
