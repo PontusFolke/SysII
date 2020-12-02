@@ -28,17 +28,20 @@ public class SettingsGUI extends JFrame {
     private ImageIcon iconOff = new ImageIcon("images/Off.PNG");
     private ImageIcon iconOk = new ImageIcon("images/ok.PNG");
     private ImageIcon iconPi = new ImageIcon("images/pi.jpg");
+    private ImageIcon iconHs = new ImageIcon("imagesHighscore.jpg");
 
 
     private JButton btnOn = new JButton(iconOn);
     private JButton btnOff = new JButton(iconOff);
     private JButton btnOk = new JButton(iconOk);
+    private JButton btnHs = new JButton(iconHs);
 
     private JLabel lblSettings = new JLabel(inställningarLogo);
     private JLabel lblMusic = new JLabel(iconMusic);
     private JLabel lblPiOn = new JLabel(iconPi);
     private JLabel lblPiOff = new JLabel(iconPi);
     private JLabel lblPi3Ok = new JLabel(iconPi);
+    private JLabel lblPiHs = new JLabel(iconPi);
 
     private Font myFont = new Font("Serif", Font.ITALIC | Font.BOLD, 20);
 
@@ -60,10 +63,12 @@ public class SettingsGUI extends JFrame {
         lblPiOn.setVisible(false);
         lblPiOff.setVisible(false);
         lblPi3Ok.setVisible(false);
+        lblPiHs.setVisible(false);
 
         btnOk.setBorder(BorderFactory.createLineBorder(Color.WHITE));
         btnOff.setBorder(BorderFactory.createLineBorder(Color.WHITE));
         btnOn.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+        btnHs.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 
         addContents();
         addListeners();
@@ -81,8 +86,10 @@ public class SettingsGUI extends JFrame {
         lblPiOn.setBounds(200, 90, 33, 40);
         btnOff.setBounds(240, 150, 71, 24);
         lblPiOff.setBounds(200, 140, 33, 40);
-        btnOk.setBounds(150, 200, 59, 38);
-        lblPi3Ok.setBounds(110, 200, 33, 40);
+        btnOk.setBounds(240, 200, 59, 38);
+        lblPi3Ok.setBounds(200, 200, 33, 40);
+        btnHs.setBounds(50, 200, 170, 40);
+        lblPiHs.setBounds(10, 200, 170, 40);
 
     }
 
@@ -99,6 +106,8 @@ public class SettingsGUI extends JFrame {
         pnlMain.add(lblPiOff);
         pnlMain.add(btnOk);
         pnlMain.add(lblPi3Ok);
+        pnlMain.add(btnHs);
+        pnlMain.add(lblPiHs);
     }
 
     /**
@@ -109,9 +118,11 @@ public class SettingsGUI extends JFrame {
         btnOk.addActionListener(new OkListener());
         btnOn.addActionListener(new PlayMusic());
         btnOff.addActionListener(new StopMusic());
+        btnHs.addActionListener(new HsListener());
         btnOn.addMouseListener(new MouseOn());
         btnOff.addMouseListener(new MouseOff());
         btnOk.addMouseListener(new MouseOk());
+        btnHs.addMouseListener(new MouseHs());
     }
 
     /**
@@ -182,6 +193,26 @@ public class SettingsGUI extends JFrame {
             lblPi3Ok.setVisible(false);
         }
     }
+    
+    private class MouseHs implements MouseListener {
+        public void mouseClicked(MouseEvent e) {
+
+        }
+
+        public void mousePressed(MouseEvent e) {
+        }
+
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        public void mouseEntered(MouseEvent e) {
+            lblPiHs.setVisible(true);
+        }
+
+        public void mouseExited(MouseEvent e) {
+        	lblPiHs.setVisible(false);
+        }
+    }
 
     /**
      * This class contains the functions for the "OK" button in the SettingsGUI
@@ -209,6 +240,14 @@ public class SettingsGUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             musicController.stopMusic();
+        }
+    }
+    
+    private class HsListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        	new HighScoreGUI();
         }
     }
 }

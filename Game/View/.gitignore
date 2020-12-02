@@ -45,3 +45,6 @@
 /SettingsGUI$PlayMusic.class
 /SettingsGUI$StopMusic.class
 /SettingsGUI.class
+/SettingsGUI$MouseHs.class
+/SettingsGUI$HsListener.class
+/HighScoreGUI.class

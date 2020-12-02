@@ -1,5 +1,7 @@
 package Game.Controller;
 
+import Game.View.HighScoreGUI;
+
 /**
  * Main class to start the program.
  *
