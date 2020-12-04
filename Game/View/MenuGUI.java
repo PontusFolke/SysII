@@ -60,7 +60,7 @@ public class MenuGUI extends JFrame {
     private JLabel lblGhostSettings = new JLabel();
     private JLabel lblPiHelp = new JLabel(iconPi);
     private JLabel lblGhostHelp = new JLabel();
-
+    private SettingsGUI settingsGUI;
 
     /**
      * This method contains Memorias main menu GUI
@@ -236,6 +236,7 @@ public class MenuGUI extends JFrame {
             lblGhostSinglePlayer.setVisible(true);
         }
     }
+    
 
     /**
      * This class contains the functions for the settings button in the MenuGUI
@@ -244,8 +245,17 @@ public class MenuGUI extends JFrame {
      */
     private class MouseSettings implements MouseListener {
         public void mouseClicked(MouseEvent e) {
-            new SettingsGUI();
-
+            if (settingsGUI==null){
+         	   System.out.print(settingsGUI);
+         		  settingsGUI= new SettingsGUI();
+            
+            }else {
+            	System.out.print(settingsGUI.isDisposed());
+            	if (settingsGUI.isDisposed()) {
+            		System.out.print(settingsGUI.isDisposed());
+            		settingsGUI=new SettingsGUI();
+            	}
+            }
         }
 
         public void mousePressed(MouseEvent e) {
