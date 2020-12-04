@@ -69,7 +69,8 @@ public class BoardGUI extends JFrame {
     private JLabel lblGhost13 = new JLabel();
     private JLabel lblPi = new JLabel(iconPi);
     private JLabel lblPi2 = new JLabel(iconPi);
-    
+    private SettingsGUI settingsGUI;
+    private HelpGUI helpGUI;
     
 
     private Timer timer;
@@ -330,7 +331,17 @@ public class BoardGUI extends JFrame {
      */
     private class MouseSettings implements MouseListener {
         public void mouseClicked(MouseEvent e) {
-        	new SettingsGUI();
+        	if (settingsGUI==null){
+          	   
+          		  settingsGUI= new SettingsGUI();
+             
+             }else {
+             	System.out.print(settingsGUI.isDisposed());
+             	if (settingsGUI.isDisposed()) {
+             		
+             		settingsGUI=new SettingsGUI();
+             	}
+             }
            
         }
 
@@ -357,7 +368,17 @@ public class BoardGUI extends JFrame {
      */
     private class MouseHelp implements MouseListener {
         public void mouseClicked(MouseEvent e) {
-            new HelpGUI();
+        	if (helpGUI==null){
+            	   
+         		  helpGUI= new HelpGUI();
+            
+            }else {
+            
+            	if (helpGUI.isDisposed()) {
+            		
+            		helpGUI=new HelpGUI();
+            	}
+            }
         }
 
         public void mousePressed(MouseEvent e) {
