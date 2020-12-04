@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * This class contains all the code for the Setting interface
@@ -41,6 +43,8 @@ public class SettingsGUI extends JFrame {
     private JLabel lblPi3Ok = new JLabel(iconPi);
 
     private Font myFont = new Font("Serif", Font.ITALIC | Font.BOLD, 20);
+    
+    private boolean isDisposed=false;
 
     /**
      * This constructor contains the functions for the settingsGUI
@@ -68,7 +72,8 @@ public class SettingsGUI extends JFrame {
         addContents();
         addListeners();
         setBoundsForContents();
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        XButtonPressed();
+        //frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -100,7 +105,9 @@ public class SettingsGUI extends JFrame {
         pnlMain.add(btnOk);
         pnlMain.add(lblPi3Ok);
     }
-
+    public boolean isDisposed() {
+    	return isDisposed;
+    }
     /**
      * This method adds listeners to the buttons in the SettingsGUI
      */
@@ -192,7 +199,10 @@ public class SettingsGUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+        	isDisposed=true;
+        	System.out.println("GUI is disposed?" + isDisposed);
             frame.dispose();
+            
         }
     }
 
@@ -210,5 +220,16 @@ public class SettingsGUI extends JFrame {
         public void actionPerformed(ActionEvent e) {
             musicController.stopMusic();
         }
+    }
+    public void XButtonPressed() {
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                isDisposed=true;
+                frame.dispose();
+            }
+        });
     }
 }

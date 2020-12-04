@@ -69,6 +69,8 @@ public class BoardGUI extends JFrame {
     private JLabel lblGhost13 = new JLabel();
     private JLabel lblPi = new JLabel(iconPi);
     private JLabel lblPi2 = new JLabel(iconPi);
+    
+    
 
     private Timer timer;
     private ArrayList<Card> cards;
@@ -81,6 +83,7 @@ public class BoardGUI extends JFrame {
      * @param controller
      */
     public BoardGUI(Controller controller) {
+    	
         this.controller = controller;
         musicController.stopMusic();
         musicController.playMusic("music/GameMusic.wav");
@@ -327,8 +330,8 @@ public class BoardGUI extends JFrame {
      */
     private class MouseSettings implements MouseListener {
         public void mouseClicked(MouseEvent e) {
-            new SettingsGUI();
-
+        	new SettingsGUI();
+           
         }
 
         public void mousePressed(MouseEvent e) {
