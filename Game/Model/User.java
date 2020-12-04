@@ -16,6 +16,10 @@ public class User {
      *
      * @param userName User input
      */
+    public User() {
+    	this.userName = "";
+    	this.gameScore = 0;
+    }
     public User(String userName) {
         this.userName = userName;
     }

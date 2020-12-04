@@ -5,6 +5,7 @@ import Game.Model.Card;
 import Game.Model.InfoReader;
 import Game.Model.User;
 import Game.View.BoardGUI;
+import Game.View.HighScoreGUI;
 import Game.View.LogInGUI;
 import Game.View.MenuGUI;
 
@@ -24,6 +25,7 @@ import java.util.Arrays;
 public class Controller {
     private ClickController clickController = new ClickController();
     private MusicController musicController = new MusicController();
+    private HighScoreController hsController = new HighScoreController();
     private BoardGUI boardGUI;
     private LogInGUI logInPlayer1;
     private LogInGUI logInPlayer2;
@@ -35,6 +37,7 @@ public class Controller {
     private User[] multiPlayer = new User[2];   // Keeps information of logged in users.
     private boolean turnPlayer1 = true;         // Track which players turn it is.
 
+
     /**
      * Construct the controller and initialize a login view.
      */
@@ -42,6 +45,7 @@ public class Controller {
         logInPlayer1 = new LogInGUI(this, "Player One ");
         infoReader = new InfoReader("textfiles/infopanel.txt", "textfiles/symbol.txt");
         musicController.playMusic("music/MenuMusic.wav");
+
     }
 
     /**
@@ -211,9 +215,11 @@ public class Controller {
         } else if (score2 > score1) {
             String messageWin = "Grattis";
             endOfGame(multiPlayer[1].getUserName(), messageWin);
+
         } else {
             String messageWin = "Poängställningen blev lika!";
             endOfGame("", messageWin);
+           // checkHighScore();
         }
         score1total += score1;
         score2total += score2;
@@ -274,4 +280,6 @@ public class Controller {
             boardGUI.setLblScore2(score);
         }
     }
+    
+
 }

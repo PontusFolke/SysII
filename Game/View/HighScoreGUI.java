@@ -25,7 +25,6 @@ public class HighScoreGUI extends JFrame {
 		highscorePanel.add(highscorePicter);
 		highscorePanel.add(highscoreList);
 		highscorePanel.setBounds(0, 30, 500, 500);
-	//	highscorePanel.setPreferredSize(400, 400);
 		highscoreList.setVerticalAlignment(JLabel.CENTER);
 		highscoreList.setHorizontalAlignment(JLabel.CENTER);
 	}
