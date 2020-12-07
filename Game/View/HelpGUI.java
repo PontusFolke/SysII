@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * This class contains everything concerning the HelpGUI
@@ -32,7 +34,7 @@ public class HelpGUI extends JFrame {
     private JButton btnNext[] = new JButton[8];
     private JButton btnBack[] = new JButton[8];
     private JButton btnOK[] = new JButton[8];
-
+    private boolean isDisposed=false;
     /**
      * This constructor brings all the methods together for the HelpGUI
      */
@@ -51,7 +53,12 @@ public class HelpGUI extends JFrame {
         addButtons();
         addInnerClasses();
         addPanels();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        XButtonPressed();
+        //setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+    
+    public boolean isDisposed() {
+    	return isDisposed;
     }
 
     /**
@@ -370,7 +377,21 @@ public class HelpGUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+        	isDisposed=true;
+        	
+            
             dispose();
         }
+    }
+    public void XButtonPressed() {
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                isDisposed=true;
+                dispose();
+            }
+        });
     }
 }
