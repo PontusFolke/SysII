@@ -14,7 +14,7 @@ public class HighScoreController {
 
 	public HighScoreController() {
 		highscoreList = new User[] {new User(),new User(),new User() };
-		hsGUI.setHighscorePanel(highscoreList);
+		//hsGUI.setHighscorePanel(highscoreList);
 	}
 	
 	public void showGUI(HighScoreGUI hsGUI) {
