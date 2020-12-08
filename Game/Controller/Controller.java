@@ -32,7 +32,7 @@ public class Controller {
     private InfoReader infoReader;
 
     private Card[] pairOfCards = new Card[2];   // To handle the two cards for each round of pairings.
-    private User[] multiPlayer = new User[2];   // Keeps information of logged in users.
+    public User[] multiPlayer = new User[2];   // Keeps information of logged in users.
     private boolean turnPlayer1 = true;         // Track which players turn it is.
 
     /**
