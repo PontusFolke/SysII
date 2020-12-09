@@ -185,22 +185,18 @@ public class theFourArithmeticGUI extends JFrame{
 		
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				frame.setVisible(false);
-		        frame.dispose();
 				if(rbMchosen == true) {
-					
+					frame.setVisible(false);
+			        frame.dispose();
 		           new DropCardsThread(controller, 29);
-					System.out.println("Multiplikation");
 				}
 				if(rbDchosen == true) {
-					System.out.println("Division");
+					JOptionPane.showMessageDialog(null, "Ej implementerat än, träna gärna på något av de andra räknesätten sålänge!");
 				}
 				if(rbAchosen == true) {
-					System.out.println("Addition");
-				}
+					JOptionPane.showMessageDialog(null, "Ej implementerat än, träna gärna på något av de andra räknesätten sålänge!");				}
 				if(rbSchosen == true) {
-					System.out.println("Subtraction");
-				}
+					JOptionPane.showMessageDialog(null, "Ej implementerat än, träna gärna på något av de andra räknesätten sålänge!");				}
 				
 			}
 		});
