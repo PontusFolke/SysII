@@ -406,6 +406,7 @@ public class BoardGUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == btnBack) {
+            	controller.multiPlayer[0].setGameScore(0);
                 dispose();
                 controller.switchToMenu();
                 musicController.stopMusic();
