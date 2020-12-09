@@ -51,11 +51,13 @@ public class CardDropTask extends Card implements Runnable {
      */
     @Override
     public void run() {
+    
         try {
             keepDropping();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    	
     }
 
     /**
@@ -65,9 +67,14 @@ public class CardDropTask extends Card implements Runnable {
      * @param alive true if a new thread is to be started with this task
      */
     public void setAlive(boolean alive) {
-        this.alive = alive;
-        if (alive) {
-            new Thread(this).start();
+    	if (this.alive!=alive) {
+    		
+    	
+    		this.alive = alive;
+    		
+    		if (alive) {
+    			new Thread(this).start();
+    		}
         }
     }
 
@@ -112,6 +119,9 @@ public class CardDropTask extends Card implements Runnable {
     public boolean isValidateRoot() {
         return true;
     }
+    public void setStartPosition() {
+    	yPosition=0;
+    }
 
     /**
      * This card drop tread keeps running until there is a match typed in by the user,
@@ -120,13 +130,17 @@ public class CardDropTask extends Card implements Runnable {
      * @throws InterruptedException
      */
     private void keepDropping() throws InterruptedException {
+    	
         while (alive) {
+        	
             Thread.sleep(dropSpeed);
             yPosition++;
-
+           
             setupDrop(Color.BLACK, Color.WHITE, problem);
             correctAnswer();
             gameOver();
+        	
+  
         }
     }
 
