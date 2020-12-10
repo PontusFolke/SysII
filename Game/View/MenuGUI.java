@@ -217,7 +217,8 @@ public class MenuGUI extends JFrame {
         public void mouseClicked(MouseEvent e) {
             setVisible(false);
             dispose();
-            new DropCardsThread(controller, 29);
+           // new DropCardsThread(controller, 29);
+            new theFourArithmeticGUI(controller);
 
         }
 
