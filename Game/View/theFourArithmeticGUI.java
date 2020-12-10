@@ -201,7 +201,9 @@ public class theFourArithmeticGUI extends JFrame{
 					new DropCardsThread(controller, 29,3);	
 				}
 				if(rbSchosen == true) {
-					JOptionPane.showMessageDialog(null, "Ej implementerat än, träna gärna på något av de andra räknesätten sålänge!");	
+					frame.setVisible(false);
+					frame.dispose();
+					new DropCardsThread(controller, 29,4);	
 				}
 			}
 		});

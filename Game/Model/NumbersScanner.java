@@ -28,6 +28,8 @@ public class NumbersScanner {
     		createListsDiv();
     	} else if (mode == 3) {
     		createListsAdd();
+    	} else if (mode == 4) {
+    		createListsSub();
     	}
     }
 
@@ -72,11 +74,7 @@ public class NumbersScanner {
             int product = (factor1 * factor2);
             String problem = product + "/" + factor2;
             String productStr = String.valueOf(factor1);
-            
-//            System.out.println("Detta är summan: " + product);
-//            System.out.println("Detta är hela talet: " + problem);
-//            System.out.println("Detta är svaret: " + productStr);
-            
+      
             problems.add(problem);
             solved.add(productStr);
         }
@@ -104,6 +102,30 @@ public class NumbersScanner {
             solved.add(productStr);
         }
     }
+    
+    private void createListsSub() {
+    	int min = 1;
+    	int max = 20;
+        random = new Random();
+        problems = new ArrayList<>();
+        solved = new ArrayList<>();
+
+        for (int i = 0; i < SIZE; i++) {
+            int factor1 = random.nextInt(max - min + 1) + min;
+            int factor2 = random.nextInt(max - min + 1) + min;
+            // Even out (sufficiently) the probability of matching factors (Tested for a large number).
+            while ((factor1 - factor2) <= 0) {
+            	factor1 = random.nextInt(max - min + 1) + min;
+            	factor2 = random.nextInt(max - min + 1) + min;
+            }
+            
+            int product = (factor1 - factor2);
+            String problem = factor1 + "-" + factor2;
+            String productStr = String.valueOf(product);
+            problems.add(problem);
+            solved.add(productStr);
+        }
+    }
 
     /**
      * Access to the list representing some multiplication problems.
@@ -123,7 +145,4 @@ public class NumbersScanner {
         return solved;
     }
     
-//    public static void main(String[] args) {
-//		new NumbersScanner();
-//	}
 }
