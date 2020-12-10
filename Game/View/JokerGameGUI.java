@@ -1,11 +1,9 @@
 package Game.View;
 
 import Game.Controller.multiplicationGame.CardDropTask;
-import Game.View.BoardGUI.ActionListener;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
@@ -23,43 +21,25 @@ public class JokerGameGUI extends JFrame {
     private JPanel pnlMain;
     private JPanel pnlTyping;
     private JPanel pnlGame;
-    private JPanel pnlRight;
-    private JLabel lblHelp;
     private JTextField textFieldPoints;
     private JLabel labelTyping;
     private JLabel lblTwoPoints;
     private JLabel lblFinalPoints;
     private String answerTyped = "";
-    private boolean isHelpBtnPressed=false;
-    private ImageIcon iconHelp = new ImageIcon("images/questionMark1.jpg");
-    private JButton btnInstructions = new JButton(iconHelp);
-    private HelpGUI helpGUI;
 
     /**
      * Construct and initialize the GUI.
      */
     public JokerGameGUI() {
         setupGamePanel();
-        
         setupTypePanel();
-        setupRightPanel();
-        
         setupMainPanel();
-        
         setupTwoPointsLabel();
         setupFinalPointsLabel();
         setupFrame();
         xButtonPressed();
     }
-    
-    public boolean isHelBtnPressed() {
-    	
-    	return isHelpBtnPressed;
-    }
-    public void helpGuiClosed() {
-    	System.out.println("help gui closed");
-    	isHelpBtnPressed=false;
-    }
+
     /**
      * Updates the GUI by adding a new card drop on the game panel.
      *
@@ -169,23 +149,11 @@ public class JokerGameGUI extends JFrame {
         pnlMain = new JPanel();
         pnlMain.setLayout(new BorderLayout());
         pnlMain.setPreferredSize(new Dimension(1000, 600));
-        pnlMain.add(pnlRight,BorderLayout.EAST);
+
         pnlMain.add(pnlTyping, BorderLayout.NORTH);
-        
         pnlMain.add(pnlGame, BorderLayout.CENTER);
-        
     }
-    private void setupRightPanel() {
-    	pnlRight=new JPanel();
-    	pnlRight.setLayout(new BorderLayout());
-    	pnlRight.setPreferredSize(new Dimension(50,600));
-    	pnlRight.setBackground(Color.WHITE);
-    	btnInstructions.setBackground(Color.WHITE);
-    	btnInstructions.setMaximumSize(new Dimension(50, 68));
-        pnlRight.add(btnInstructions, BorderLayout.SOUTH);
-        btnInstructions.addActionListener(new buttonListener());
-    }
-   
+
     /**
      * Initialize the panel where the user input is visualized.
      */
@@ -210,7 +178,6 @@ public class JokerGameGUI extends JFrame {
         pnlCenterTyping.add(labelTyping, BorderLayout.CENTER);
         pnlTyping.add(pnlCenterTyping, BorderLayout.CENTER);
         pnlTyping.add(textFieldPoints, BorderLayout.EAST);
-       
     }
 
     /**
@@ -219,12 +186,6 @@ public class JokerGameGUI extends JFrame {
     private void setupGamePanel() {
         pnlGame = new JPanel();
         pnlGame.setBackground(Color.WHITE);
-        lblHelp=new JLabel("HELP");
-        lblHelp.setPreferredSize(new Dimension(500,500));
-    	lblHelp.setBackground(Color.WHITE);
-    	lblHelp.setOpaque(true);
-    	lblHelp.setVisible(false);
-    	pnlGame.add(lblHelp);
     }
 
     /**
@@ -312,30 +273,5 @@ public class JokerGameGUI extends JFrame {
                 }
             }
         });
-    }
-    private class buttonListener implements  java.awt.event.ActionListener {
-    	
-    
-    	 public void actionPerformed(ActionEvent e) {
-             if (e.getSource() == btnInstructions) {
-                 isHelpBtnPressed=true;
-                 
-                 
-            	 if (helpGUI==null){
-                 	   
-              		  helpGUI= new HelpGUI(JokerGameGUI.this);
-                 
-                 }else {
-                 
-                 	if (helpGUI.isDisposed()) {
-                 		
-                 		helpGUI=new HelpGUI(JokerGameGUI.this);
-                 	}
-                 }
-                 
-                 
-             }
-    	 }
-    
     }
 }
