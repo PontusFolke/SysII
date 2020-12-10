@@ -35,6 +35,7 @@ public class HelpGUI extends JFrame {
     private JButton btnBack[] = new JButton[8];
     private JButton btnOK[] = new JButton[8];
     private boolean isDisposed=false;
+    private JokerGameGUI jokerGameGui;
     /**
      * This constructor brings all the methods together for the HelpGUI
      */
@@ -56,10 +57,29 @@ public class HelpGUI extends JFrame {
         XButtonPressed();
         //setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
+    public HelpGUI(JokerGameGUI jokerGameGui) {
+    	this.jokerGameGui=jokerGameGui;
+        setSize(700, 700);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        add(container);
+
+        container.setLayout(card);
+        card.show(container, "1");
+
+        setLayouts();
+        createButtons();
+        addButtons();
+        addInnerClasses();
+        addPanels();
+        XButtonPressed();
+        //setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
     
     public boolean isDisposed() {
     	return isDisposed;
     }
+    
 
     /**
      * This method let the developers place the panels anywhere necessary in the Frame
@@ -378,9 +398,10 @@ public class HelpGUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
         	isDisposed=true;
-        	
-            
             dispose();
+            if(jokerGameGui!=null) {
+            	jokerGameGui.helpGuiClosed();
+            }
         }
     }
     public void XButtonPressed() {
@@ -391,6 +412,9 @@ public class HelpGUI extends JFrame {
             public void windowClosing(WindowEvent e) {
                 isDisposed=true;
                 dispose();
+                if(jokerGameGui!=null) {
+                	jokerGameGui.helpGuiClosed();
+                }
             }
         });
     }
