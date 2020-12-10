@@ -15,18 +15,25 @@ public class NumbersScanner {
     private Random random;
     private ArrayList<String> problems;     // The multiplication problems.
     private ArrayList<String> solved;       // The answers to the problems.
+    private int min = 1;
+    private int max = 10;
+ 
 
     /**
      * Construct and initialize the lists.
      */
-    public NumbersScanner() {
-        createLists();
+    public NumbersScanner(int mode) {
+    	if (mode == 1) {
+    		createListsMult();
+    	} else if (mode == 2) {
+    		createListsDiv();
+    	}
     }
 
     /**
      * Creates the lists from a random variable, representing the problems and answers as strings.
      */
-    private void createLists() {
+    private void createListsMult() {
         random = new Random();
         problems = new ArrayList<>();
         solved = new ArrayList<>();
@@ -42,6 +49,31 @@ public class NumbersScanner {
             String problem = factor1 + "*" + factor2;
             String productStr = String.valueOf(product);
 
+            problems.add(problem);
+            solved.add(productStr);
+        }
+    }
+    
+    private void createListsDiv() {
+        random = new Random();
+        problems = new ArrayList<>();
+        solved = new ArrayList<>();
+
+        for (int i = 0; i < SIZE; i++) {
+            int factor1 = random.nextInt(max - min + 1) + min;
+            int factor2 = random.nextInt(max - min + 1) + min;
+            // Even out (sufficiently) the probability of matching factors (Tested for a large number).
+            if (factor2 != factor1) {
+                factor2 = random.nextInt(max - min + 1) + min;
+            }
+            int product = (factor1 * factor2);
+            String problem = product + "/" + factor2;
+            String productStr = String.valueOf(factor1);
+            
+//            System.out.println("Detta är summan: " + product);
+//            System.out.println("Detta är hela talet: " + problem);
+//            System.out.println("Detta är svaret: " + productStr);
+            
             problems.add(problem);
             solved.add(productStr);
         }
@@ -64,4 +96,8 @@ public class NumbersScanner {
     public ArrayList<String> getSolved() {
         return solved;
     }
+    
+//    public static void main(String[] args) {
+//		new NumbersScanner();
+//	}
 }

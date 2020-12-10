@@ -22,19 +22,19 @@ public class theFourArithmeticGUI extends JFrame{
 	private JRadioButton rbSubtraction = new JRadioButton("Subtraction");
 	private JRadioButton rbAddition = new JRadioButton("Addition");
 	private ButtonGroup group = new ButtonGroup();
-	
+
 	private ImageIcon iconSingle = new ImageIcon(new ImageIcon("images/single.JPG").getImage().getScaledInstance(250, 50, Image.SCALE_SMOOTH));
 	private ImageIcon iconPi = new ImageIcon(new ImageIcon("images/pi.JPG").getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
 	private ImageIcon iconMemoria = new ImageIcon(new ImageIcon("images/mem3.JPG").getImage().getScaledInstance(400, 100, Image.SCALE_SMOOTH));
 	private ImageIcon iconBack = new ImageIcon("images/back.jpg");
-	
+
 	private JLabel lblMemoria = new JLabel(iconMemoria);
 	private JLabel lblSingle = new JLabel(iconSingle);
 	private JLabel lblPi = new JLabel(iconPi);
 
 	private JButton btnBack = new JButton(iconBack);
 	private JButton btnStart = new JButton("Start");
-	
+
 	private Font myFont1 = new Font("Serif", Font.ITALIC | Font.BOLD, 26);
 	private Font myFont2 = new Font("Serif", Font.ITALIC | Font.BOLD, 32);
 
@@ -50,7 +50,7 @@ public class theFourArithmeticGUI extends JFrame{
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
 		frame.add(pnlMain);
-//		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		//		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		pnlMain.setLayout(null);
 		pnlMain.setBackground(Color.white);
@@ -73,14 +73,14 @@ public class theFourArithmeticGUI extends JFrame{
 		btnBack.setBackground(Color.white);
 		btnBack.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 		btnBack.setFocusPainted(false);
-		
+
 		btnStart.setBounds(420, 380, 80, 30);
 		btnStart.setBackground(Color.white);
 		btnStart.setBorder(BorderFactory.createLineBorder(Color.white));
 		btnStart.setFocusPainted(false);
 		btnStart.setFont(myFont2);
 		btnStart.setVisible(false);
-		
+
 		lblMemoria.setBounds(100, 30, 400, 100); 
 		lblSingle.setBounds(100,100,400,100);
 		lblPi.setBounds(160,180,20,20);
@@ -94,7 +94,7 @@ public class theFourArithmeticGUI extends JFrame{
 		rbDivision.setBackground(Color.white);
 		rbSubtraction.setBackground(Color.white);
 		rbAddition.setBackground(Color.white);
-		
+
 		rbMultiplication.setFocusPainted(false);
 		rbDivision.setFocusPainted(false);
 		rbSubtraction.setFocusPainted(false);
@@ -113,10 +113,10 @@ public class theFourArithmeticGUI extends JFrame{
 	}
 
 	private void addListeners() {
-		  rbMultiplication.addMouseListener(new rbMouseListener());
-		  rbDivision.addMouseListener(new rbMouseListener());
-		  rbAddition.addMouseListener(new rbMouseListener());
-		  rbSubtraction.addMouseListener(new rbMouseListener());
+		rbMultiplication.addMouseListener(new rbMouseListener());
+		rbDivision.addMouseListener(new rbMouseListener());
+		rbAddition.addMouseListener(new rbMouseListener());
+		rbSubtraction.addMouseListener(new rbMouseListener());
 
 		rbMultiplication.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -173,7 +173,7 @@ public class theFourArithmeticGUI extends JFrame{
 
 			}
 		});
-		
+
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if ( arg0.getSource() == btnBack) {
@@ -182,28 +182,30 @@ public class theFourArithmeticGUI extends JFrame{
 				}
 			}
 		});
-		
+
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(rbMchosen == true) {
 					frame.setVisible(false);
-			        frame.dispose();
-		           new DropCardsThread(controller, 29);
+					frame.dispose();
+					new DropCardsThread(controller, 29,1);
 				}
 				if(rbDchosen == true) {
-					JOptionPane.showMessageDialog(null, "Ej implementerat än, träna gärna på något av de andra räknesätten sålänge!");
+					frame.setVisible(false);
+					frame.dispose();
+					new DropCardsThread(controller, 29,2);
 				}
 				if(rbAchosen == true) {
-					JOptionPane.showMessageDialog(null, "Ej implementerat än, träna gärna på något av de andra räknesätten sålänge!");				}
+					JOptionPane.showMessageDialog(null, "Ej implementerat än, träna gärna på något av de andra räknesätten sålänge!");	
+				}
 				if(rbSchosen == true) {
-					JOptionPane.showMessageDialog(null, "Ej implementerat än, träna gärna på något av de andra räknesätten sålänge!");				}
-				
+					JOptionPane.showMessageDialog(null, "Ej implementerat än, träna gärna på något av de andra räknesätten sålänge!");	
+				}
 			}
 		});
-
 	}
-	
-	
+
+
 	private class rbMouseListener implements MouseListener {
 
 		@Override
@@ -242,25 +244,25 @@ public class theFourArithmeticGUI extends JFrame{
 		public void mouseReleased(MouseEvent arg0) {
 		}
 	}
-	
-    public void XButtonPressed() {
-        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
-        frame.addWindowListener(new WindowAdapter() {
-        	
-            @Override
-            public void windowClosing(WindowEvent e) {
-            	System.out.println("??");
-                int x = JOptionPane.showConfirmDialog(null,
-                        "Do you really want to close Memoria?");
-                if (x == JOptionPane.YES_OPTION) {
-                    e.getWindow().dispose();
-                    System.exit(0);
-                } else {
-                    System.out.println("We are happy you are back :)");
-                }
-            }
-        });
-    }
+	public void XButtonPressed() {
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+		frame.addWindowListener(new WindowAdapter() {
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.out.println("??");
+				int x = JOptionPane.showConfirmDialog(null,
+						"Do you really want to close Memoria?");
+				if (x == JOptionPane.YES_OPTION) {
+					e.getWindow().dispose();
+					System.exit(0);
+				} else {
+					System.out.println("We are happy you are back :)");
+				}
+			}
+		});
+	}
 
 }
