@@ -15,18 +15,19 @@ public class NumbersScanner {
     private Random random;
     private ArrayList<String> problems;     // The multiplication problems.
     private ArrayList<String> solved;       // The answers to the problems.
-    private int min = 1;
-    private int max = 10;
+
  
 
     /**
      * Construct and initialize the lists.
      */
     public NumbersScanner(int mode) {
-    	if (mode == 1) {
+    	  if (mode == 1) {
     		createListsMult();
     	} else if (mode == 2) {
     		createListsDiv();
+    	} else if (mode == 3) {
+    		createListsAdd();
     	}
     }
 
@@ -55,6 +56,8 @@ public class NumbersScanner {
     }
     
     private void createListsDiv() {
+    	int min = 1;
+    	int max = 10;
         random = new Random();
         problems = new ArrayList<>();
         solved = new ArrayList<>();
@@ -74,6 +77,29 @@ public class NumbersScanner {
 //            System.out.println("Detta är hela talet: " + problem);
 //            System.out.println("Detta är svaret: " + productStr);
             
+            problems.add(problem);
+            solved.add(productStr);
+        }
+    }
+    
+    private void createListsAdd() {
+    	int min = 1;
+    	int max = 20;
+        random = new Random();
+        problems = new ArrayList<>();
+        solved = new ArrayList<>();
+
+        for (int i = 0; i < SIZE; i++) {
+            int factor1 = random.nextInt(max - min + 1) + min;
+            int factor2 = random.nextInt(max - min + 1) + min;
+            // Even out (sufficiently) the probability of matching factors (Tested for a large number).
+            if (factor2 != factor1) {
+                factor2 = random.nextInt(max - min + 1) + min;
+            }
+            int product = (factor1 + factor2);
+            String problem = factor1 + "+" + factor2;
+            String productStr = String.valueOf(product);
+
             problems.add(problem);
             solved.add(productStr);
         }
