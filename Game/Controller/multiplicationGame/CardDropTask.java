@@ -24,7 +24,6 @@ public class CardDropTask extends Card implements Runnable {
     private int xPosition = new Random().nextInt(800);               // Problems appear random to this number.
     private int yPosition = 0;                                              // Origin of the problem appearing.
     private int dropSpeed = 30;                                             // Initial speed in milliseconds.
-
     private String problem;                                     // The question for the user to answer on this task.
     private String solved;                                      // The correct answer for the problem.
 
@@ -132,17 +131,20 @@ public class CardDropTask extends Card implements Runnable {
     private void keepDropping() throws InterruptedException {
     	
         while (alive) {
-        	
-            Thread.sleep(dropSpeed);
+        	Thread.sleep(dropSpeed);
+        
+        	if (!jokerGameGui.isHelBtnPressed()) {
             yPosition++;
-           
-            setupDrop(Color.BLACK, Color.WHITE, problem);
+            
+        	}
+        	setupDrop(Color.BLACK, Color.WHITE, problem);
             correctAnswer();
             gameOver();
-        	
   
         }
     }
+    
+
 
     /**
      * Update the game if a dropping card is matching user input.

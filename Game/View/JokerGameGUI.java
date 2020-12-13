@@ -57,7 +57,7 @@ public class JokerGameGUI extends JFrame {
     	return isHelpBtnPressed;
     }
     public void helpGuiClosed() {
-    	System.out.println("help gui closed");
+    	labelTyping.getTopLevelAncestor().requestFocus();
     	isHelpBtnPressed=false;
     }
     /**
@@ -130,9 +130,11 @@ public class JokerGameGUI extends JFrame {
 
         @Override
         public void keyPressed(KeyEvent e) {
+        	
             char c = e.getKeyChar();
-            if ("1234567890".contains(String.valueOf(c))) {     // Only react to numeric values.
-                if (answerTyped.length() == 1) {
+            if ("1234567890".contains(String.valueOf(c))) { // Only react to numeric values.
+                
+            	if (answerTyped.length() == 1) {
                     answerTyped += String.valueOf(c);
                 } else {
                     answerTyped = String.valueOf(c);
@@ -319,16 +321,10 @@ public class JokerGameGUI extends JFrame {
     	 public void actionPerformed(ActionEvent e) {
              if (e.getSource() == btnInstructions) {
                  isHelpBtnPressed=true;
-                 
-                 
             	 if (helpGUI==null){
-                 	   
               		  helpGUI= new HelpGUI(JokerGameGUI.this);
-                 
                  }else {
-                 
                  	if (helpGUI.isDisposed()) {
-                 		
                  		helpGUI=new HelpGUI(JokerGameGUI.this);
                  	}
                  }
