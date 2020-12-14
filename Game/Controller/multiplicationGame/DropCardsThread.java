@@ -70,11 +70,13 @@ public class DropCardsThread implements Runnable {
      */
     @Override
     public void run() {
-        try {
-            dropACard();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    	//if (jokerGameGui.isHelBtnPressed()==false) {
+    		try {
+    			dropACard();
+    		} catch (InterruptedException e) {
+    			e.printStackTrace();
+    		
+    	}
     }
 
     /**
@@ -146,20 +148,25 @@ public class DropCardsThread implements Runnable {
     private void dropACard() throws InterruptedException {
         int problemsDropped = 0;
         while (gameRunning && (problemsDropped < NBR_OF_PROBLEMS_IN_BUFFER)) {
-            Thread.sleep(random.nextInt(2000) + 1000);             // Delay next drop to random interval.
-            if (!fallingDropsList.isEmpty()) {
-                CardDropTask nextDrop = fallingDropsList.get(problemsDropped);
-                nextDrop.setDropSpeed(dropSpeed);
-                nextDrop.setAlive(true);// Start a new drop thread.
-                if (singlePlayer) {
-                    dropSpeed--;
-                }
-                jokerGameGui.addDropToGamePanel(
-                        fallingDropsList.get(problemsDropped));   // Put the new drop on rain thread.
-                problemsDropped++;
-            }
+        	Thread.sleep(random.nextInt(2000) + 1000); 
+        	 if(jokerGameGui.isHelBtnPressed()==false) {
+	            if (!fallingDropsList.isEmpty()) {
+	                CardDropTask nextDrop = fallingDropsList.get(problemsDropped);
+	                nextDrop.setDropSpeed(dropSpeed);
+	                nextDrop.setAlive(true);// Start a new drop thread.
+	                if (singlePlayer) {
+	                    dropSpeed--;
+	                }
+	                jokerGameGui.addDropToGamePanel(
+	                			fallingDropsList.get(problemsDropped));   // Put the new drop on rain thread.
+	                problemsDropped++;
+	            
+     			}
+        	 }
+    		
+    		}
         }
-    }
+    
 
     /**
      * Fill up the fallingDropsList with CardDropTasks.
