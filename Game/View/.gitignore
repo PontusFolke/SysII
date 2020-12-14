@@ -45,8 +45,15 @@
 /SettingsGUI$PlayMusic.class
 /SettingsGUI$StopMusic.class
 /SettingsGUI.class
+
 /SettingsGUI$1.class
 /HelpGUI$1.class
+
+
+/JokerGameGUI$buttonListener.class
+/JokerGameHelpGUI.class
+
+
 /theFourArithmeticGUI$1.class
 /theFourArithmeticGUI$2.class
 /theFourArithmeticGUI$3.class
@@ -56,3 +63,4 @@
 /theFourArithmeticGUI$7.class
 /theFourArithmeticGUI$rbMouseListener.class
 /theFourArithmeticGUI.class
+
