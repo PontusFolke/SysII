@@ -142,6 +142,7 @@ public class Controller {
             multiPlayer[0] = new User(name);
             JOptionPane.showMessageDialog(null, "Välkommen spelare 1: " + name);
             menuGUI = new MenuGUI(this);
+            
         } else {
             String name = logInPlayer2.getTxtUsername().getText();
             multiPlayer[1] = new User(name);
@@ -149,6 +150,7 @@ public class Controller {
             boardGUI = new BoardGUI(this);
             boardGUI.getPnlPlayer1().setBorder(BorderFactory.createTitledBorder(multiPlayer[0].getUserName()));
             boardGUI.getPnlPlayer2().setBorder(BorderFactory.createTitledBorder(multiPlayer[1].getUserName()));
+            
         }
     }
 
@@ -273,5 +275,17 @@ public class Controller {
             multiPlayer[1].setGameScore(score);
             boardGUI.setLblScore2(score);
         }
+    }
+    public LogInGUI getPlayer1LoginGui() {
+    	return logInPlayer1;
+    }
+    public LogInGUI getPlayer2LoginGui() {
+    	return logInPlayer2;
+    }
+    public User[] getMultiplayer() {
+    	return multiPlayer;
+    }
+    public BoardGUI getBoardGui() {
+    	return boardGUI;
     }
 }

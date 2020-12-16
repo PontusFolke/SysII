@@ -31,6 +31,7 @@ public class LogInGUI extends JFrame {
     private Font myFont = new Font("Serif", Font.ITALIC | Font.BOLD, 20);
 
     private JButton btnLogin = new JButton(imgbtn);
+    
 
     /**
      * Constructor that initializes the different components in the class
@@ -158,16 +159,24 @@ public class LogInGUI extends JFrame {
      */
     private class Listener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            if ((txtUsername.getText().trim().length() <= 10) && (txtUsername.getText().trim().length() >= 3)) {
-
-                controller.createUser();
-                setVisible(false);
-                dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Ogiltigt användarnamn");
-            }
+            checkAndSetUserName();
         }
     }
+    public void checkAndSetUserName() {
+    	if ((txtUsername.getText().trim().length() <= 10) && (txtUsername.getText().trim().length() >= 3)) {
+
+    		controller.createUser();
+    		setVisible(false);
+    		dispose();
+    	} else {
+         JOptionPane.showMessageDialog(null, "Ogiltigt användarnamn");
+    	}
+    }
+    
+    public void setTxtUsername(String userName) { //Used for testing login functionality in automatic tests
+    	txtUsername.setText(userName);
+    }
+   
 
     public JTextField getTxtUsername() {
         return txtUsername;

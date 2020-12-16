@@ -207,7 +207,11 @@ public class MenuGUI extends JFrame {
             lblGhostMultiPlayer.setVisible(true);
         }
     }
-
+    public void startMultiPlayerGame() {
+    controller.logInSecondPlayerView();
+    setVisible(false);
+    dispose();
+    }
     /**
      * This class contains the functions for the single player button in the MenuGUI
      *
@@ -215,10 +219,7 @@ public class MenuGUI extends JFrame {
      */
     private class MouseSinglePlayer implements MouseListener {
         public void mouseClicked(MouseEvent e) {
-            setVisible(false);
-            dispose();
-           // new DropCardsThread(controller, 29);
-            new theFourArithmeticGUI(controller);
+           disposeAndStartTheFourArithmeticGUI();
 
         }
 
@@ -237,7 +238,16 @@ public class MenuGUI extends JFrame {
             lblPiSinglePlayer.setVisible(false);
             lblGhostSinglePlayer.setVisible(true);
         }
+        
+       
+       
     }
+    public theFourArithmeticGUI disposeAndStartTheFourArithmeticGUI() {
+   	 setVisible(false);
+        dispose();
+       // new DropCardsThread(controller, 29);
+        return new theFourArithmeticGUI(controller);
+   }
     
 
     /**

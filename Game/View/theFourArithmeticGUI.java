@@ -186,9 +186,7 @@ public class theFourArithmeticGUI extends JFrame{
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(rbMchosen == true) {
-					frame.setVisible(false);
-			        frame.dispose();
-		           new DropCardsThread(controller, 29);
+					startSinglePlayer();
 				}
 				if(rbDchosen == true) {
 					JOptionPane.showMessageDialog(null, "Ej implementerat än, träna gärna på något av de andra räknesätten sålänge!");
@@ -200,7 +198,7 @@ public class theFourArithmeticGUI extends JFrame{
 				
 			}
 		});
-
+		
 	}
 	
 	
@@ -262,5 +260,10 @@ public class theFourArithmeticGUI extends JFrame{
             }
         });
     }
+    public DropCardsThread startSinglePlayer() {
+		frame.setVisible(false);
+        frame.dispose();
+        return new DropCardsThread(controller, 29);
+		}
 
 }
