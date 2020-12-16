@@ -24,6 +24,7 @@ public class DropCardsThread implements Runnable {
     private JokerGameGUI jokerGameGui;
 
     private Random random;
+    private int mode;
 
     private ArrayList<CardDropTask> fallingDropsList;                         // Stores drop threads.
     private boolean gameRunning = true;                                       // Set to false to stop thread.
@@ -54,7 +55,8 @@ public class DropCardsThread implements Runnable {
      * @param controller The shared controller class
      * @param problems   The number of problems to use in single player mode
      */
-    public DropCardsThread(Controller controller, int problems) {
+    public DropCardsThread(Controller controller, int problems, int mode) {
+    	this.mode = mode;
         this.controller = controller;
         jokerGameGui = new JokerGameGUI();
         random = new Random();
@@ -172,7 +174,7 @@ public class DropCardsThread implements Runnable {
      * Fill up the fallingDropsList with CardDropTasks.
      */
     private void setupDropList() {
-        NumbersScanner scanner = new NumbersScanner();
+        NumbersScanner scanner = new NumbersScanner(mode);
         ArrayList<String> problemsBuffer = scanner.getProblems();           // Create a list of problem strings.
         ArrayList<String> solvedBuffer = scanner.getSolved();               // Create a list of answer strings.
         for (int i = 0; i < NBR_OF_PROBLEMS_IN_BUFFER; i++) {      // Fill upp the falling drops list with Runnables.
