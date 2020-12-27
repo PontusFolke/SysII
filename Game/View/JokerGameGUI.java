@@ -149,6 +149,14 @@ public class JokerGameGUI extends JFrame {
 
             }
             
+            if(key == KeyEvent.VK_BACK_SPACE) {
+            	if(test.length() > 0) {
+            	test = test.substring(0, test.length()-1);
+            	System.out.println("hejk");
+            	labelTyping.setText(test);
+            	}		
+            }
+            
             
           
         }
