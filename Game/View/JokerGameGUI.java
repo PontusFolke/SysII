@@ -30,6 +30,7 @@ public class JokerGameGUI extends JFrame {
     private JLabel lblTwoPoints;
     private JLabel lblFinalPoints;
     private String answerTyped = "";
+    private String test = "";
     private boolean isHelpBtnPressed=false;
     private ImageIcon iconHelp = new ImageIcon("images/questionMark1.jpg");
     private JButton btnInstructions = new JButton(iconHelp);
@@ -130,17 +131,34 @@ public class JokerGameGUI extends JFrame {
 
         @Override
         public void keyPressed(KeyEvent e) {
-        	
+        	int key = e.getKeyCode();
             char c = e.getKeyChar();
             if ("1234567890".contains(String.valueOf(c))) { // Only react to numeric values.
                 
-            	if (answerTyped.length() == 1) {
-                    answerTyped += String.valueOf(c);
+            	if (test.length() == 1) {
+                    test += String.valueOf(c);
                 } else {
-                    answerTyped = String.valueOf(c);
+                    test = String.valueOf(c);
                 }
             }
-            labelTyping.setText(answerTyped);
+            labelTyping.setText(test);
+            if (key == KeyEvent.VK_ENTER) {
+            	answerTyped = labelTyping.getText();
+            	test = "";
+                labelTyping.setText(test);
+
+            }
+            
+            if(key == KeyEvent.VK_BACK_SPACE) {
+            	if(test.length() > 0) {
+            	test = test.substring(0, test.length()-1);
+            	System.out.println("hejk");
+            	labelTyping.setText(test);
+            	}		
+            }
+            
+            
+          
         }
 
         @Override
