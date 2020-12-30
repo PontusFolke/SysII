@@ -42,9 +42,10 @@ public class DropCardsThread implements Runnable {
         jokerGameGui = new JokerGameGUI();
         random = new Random();
         singlePlayer = false;
+        mode = random.nextInt(4)+1;
         fallingDropsList = new ArrayList<CardDropTask>(NBR_OF_PROBLEMS_IN_BUFFER);
         setupDropList();                                                             // Setup list of drop threads.
-        new Thread(this).start();
+        new Thread(this).start();      
     }
 
     /**
@@ -89,7 +90,6 @@ public class DropCardsThread implements Runnable {
         for (CardDropTask drop : fallingDropsList) {
             drop.setAlive(false);                               // Stop all card drop threads.
         }
-        musicController.stopMusic();
         gameRunning = false;                                    // Stops this game thread.
         fallingDropsList.clear();                               // To not keep getting points after game over.
         try {
@@ -100,11 +100,9 @@ public class DropCardsThread implements Runnable {
         jokerGameGui.setVisible(false);
         jokerGameGui.dispose();
         if (singlePlayer) {
-            musicController.stopMusic();
             controller.switchToMenu();
         } else {
             controller.switchToBoard();
-            musicController.playMusic("music/GameMusic.wav");
             controller.addJokerPoints();
         }
     }

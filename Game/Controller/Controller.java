@@ -86,8 +86,7 @@ public class Controller {
             if (secondSymbol.equals("images/Jo")) {
                 dropCardsThread = new DropCardsThread(this);
                 boardGUI.setVisible(false);
-                musicController.stopMusic();
-                musicController.playMusic("music/JokerRound.wav");
+                setJokerMusic();
             } else {
                 clickController.click("music/Point.wav");
                 incrementScore(POINTS_PER_MATCH);
@@ -175,6 +174,12 @@ public class Controller {
      */
     public void switchToBoard() {
         boardGUI.setVisible(true);
+        if(musicController.isPlaying()) {
+        	musicController.stopMusic();
+        	musicController.playMusic("music/GameMusic.wav");
+        }else {
+        	musicController.setClip("music/GameMusic.wav");
+        }
     }
 
     /**
@@ -182,8 +187,24 @@ public class Controller {
      */
     public void switchToMenu() {
         menuGUI.setVisible(true);
+        if(musicController.isPlaying()) {
+        	musicController.stopMusic();
+        	musicController.playMusic("music/MenuMusic.wav");
+        }else {
+        	musicController.setClip("music/MenuMusic.wav");
+        }
     }
 
+    public void setJokerMusic() {
+    	if(musicController.isPlaying()) {
+        	musicController.stopMusic();
+        	musicController.playMusic("music/JokerRound.wav");
+        }else {
+        	musicController.setClip("music/JokerRound.wav");
+        }
+	}
+    
+    
     /**
      * Switch indicators in memory game view for which users playing turn it is.
      */
@@ -197,6 +218,7 @@ public class Controller {
         }
     }
 
+    
     /**
      * Check for the winner and ends the game.
      */
@@ -231,7 +253,6 @@ public class Controller {
      * @param messageWin message depending on result
      */
     private void endOfGame(String name, String messageWin) {
-        musicController.stopMusic();
         clickController.click("music/JokerWin.wav");
 
         Object[] options = {"Avsluta", "Nej", "Ja"};
@@ -256,7 +277,7 @@ public class Controller {
         } else if (reply == JOptionPane.NO_OPTION) {
             boardGUI.setVisible(false);
             menuGUI = new MenuGUI(this);
-            musicController.playMusic("music/MenuMusic.wav");
+            switchToMenu();
         }
     }
 
@@ -274,4 +295,6 @@ public class Controller {
             boardGUI.setLblScore2(score);
         }
     }
+
+	
 }
