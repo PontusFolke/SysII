@@ -411,6 +411,7 @@ public class BoardGUI extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == btnBack) {
 				dispose();
+				controller.resetScore();
 				controller.switchToMenu();
 			}
 		}

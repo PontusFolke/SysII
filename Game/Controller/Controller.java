@@ -296,5 +296,9 @@ public class Controller {
         }
     }
 
+	public void resetScore() {
+		multiPlayer[0].setGameScore(0);		
+	}
+
 	
 }
