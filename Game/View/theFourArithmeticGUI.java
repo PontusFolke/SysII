@@ -188,21 +188,25 @@ public class theFourArithmeticGUI extends JFrame{
 				if(rbMchosen == true) {
 					frame.setVisible(false);
 					frame.dispose();
+					controller.setJokerMusic();
 					new DropCardsThread(controller, 29,1);
 				}
 				if(rbDchosen == true) {
 					frame.setVisible(false);
 					frame.dispose();
+					controller.setJokerMusic();
 					new DropCardsThread(controller, 29,2);
 				}
 				if(rbAchosen == true) {
 					frame.setVisible(false);
 					frame.dispose();
+					controller.setJokerMusic();
 					new DropCardsThread(controller, 29,3);	
 				}
 				if(rbSchosen == true) {
 					frame.setVisible(false);
 					frame.dispose();
+					controller.setJokerMusic();
 					new DropCardsThread(controller, 29,4);	
 				}
 			}

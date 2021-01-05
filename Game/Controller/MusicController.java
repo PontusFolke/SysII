@@ -13,30 +13,55 @@ import java.io.File;
  * @version 4.0
  */
 public class MusicController {
-    private static Clip clip;
+	private static Clip clip;
 
-    /**
-     * This method plays the music chosen for the background music in a loop
-     */
-    public void playMusic(String filename) {
-        try {
-            File file = new File(filename);
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
-            clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.start();
-            clip.loop(clip.LOOP_CONTINUOUSLY);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+	/**
+	 * This method plays the music chosen for the background music in a loop
+	 */
+	public void playMusic(String filename) {
+		try {
+			File file = new File(filename);
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
+			clip = AudioSystem.getClip();
+			clip.open(audioInputStream);
+			clip.start();
+			clip.loop(clip.LOOP_CONTINUOUSLY);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    /**
-     * This class allows the user to turn off the music either through
-     * the settingsGUI or by closing the program
-     */
-    public void stopMusic() {
-        clip.stop();
-    }
+	/**
+	 * This class allows the user to turn off the music either through
+	 * the settingsGUI or by closing the program
+	 */
+	public void stopMusic() {
+		clip.stop();
+	}
 
+	public void setClip(String filename) {
+		try {
+			File file = new File(filename);
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
+			clip = AudioSystem.getClip();
+			clip.open(audioInputStream);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void playMusicSelectedClip() {
+		if(clip != null) {
+			try {
+				clip.start();
+				clip.loop(clip.LOOP_CONTINUOUSLY);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public boolean isPlaying() {
+		return clip.isRunning();
+	}
 }

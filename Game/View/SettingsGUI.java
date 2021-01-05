@@ -50,6 +50,11 @@ public class SettingsGUI extends JFrame {
      * This constructor contains the functions for the settingsGUI
      */
     public SettingsGUI() {
+    	if(musicController.isPlaying()) {
+    		btnOn.setEnabled(false);
+    	}else {
+    		btnOff.setEnabled(false);
+    	}
         frame.setSize(400, 300);
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
@@ -210,7 +215,9 @@ public class SettingsGUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            musicController.playMusic("music/MenuMusic.wav");
+            musicController.playMusicSelectedClip();
+            btnOn.setEnabled(false);
+            btnOff.setEnabled(true);
         }
     }
 
@@ -219,6 +226,8 @@ public class SettingsGUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             musicController.stopMusic();
+            btnOn.setEnabled(true);
+            btnOff.setEnabled(false);
         }
     }
     public void XButtonPressed() {
